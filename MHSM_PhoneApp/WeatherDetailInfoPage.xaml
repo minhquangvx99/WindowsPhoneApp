@@ -1,0 +1,79 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="MHSM_PhoneApp.WeatherDetailInfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:drawerLayout="using:DrawerLayout"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+    <StackPanel Background="#FFD6D6D6">
+        <StackPanel Background="White" Height="80">
+            <Grid x:Name="RootLayout">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!-- Title Bar -->
+                <Grid x:Name="TitleBar" Background="White" Grid.Row ="0" Height="80">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid HorizontalAlignment="Right" Width="472">
+                        <Image Margin="0,5"  x:Name="DrawerIcon"  Grid.Column="0" Source="/Assets/Back/back.png" HorizontalAlignment="Left" Width="40" RenderTransformOrigin="0.5,0.714" Grid.RowSpan="2"/>
+                        <Button x:Name="btnBack" Click="btnBack_Click" Margin="0,0,414,0" Grid.RowSpan="2" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                    </Grid>
+                    <Image Height="52" Source="/Assets/Logo/logo.png" Margin="146,10,146,10"/>
+                    <Image x:Name="avatarSmall" Height="60" Width="60" Source="/Assets/Avatar/avatar.png" Margin="400,10,10,10"/>
+                    <Image Height="60" Width="60" Source="/Assets/AvatarFrame/avatarFrameSmall.png" Margin="400,10,10,10"/>
+                </Grid>
+            </Grid>
+        </StackPanel>
+        <TextBlock x:Name="txtTitle" FontSize="22" TextWrapping="Wrap" Foreground="Black" Text="Hà Nội" FontWeight="Bold" Width="440" Margin="20,10,20,0" HorizontalAlignment="Center" TextAlignment="Center"/>
+        <ListBox x:Name="listBuilding" Height="643" Background="{x:Null}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ListBox FontFamily="Portable User Interface" Background="{x:Null}" BorderBrush="{x:Null}" Margin="10,10,10,0">
+                        <Grid Height="Auto">
+                            <Border Height="Auto" BorderThickness="2" Padding="5" CornerRadius="10" Background="White" Margin="10,10,10,0" BorderBrush="#FF787878" >
+                            </Border>
+                            <Grid>
+                                <Border Width="460" CornerRadius="10,10,0,0" Background="#FF008BFF" Margin="10,0,10,0" Padding="5" VerticalAlignment="Top" Height="58" />
+                                <TextBlock FontFamily="Portable User Interface" Text="{Binding Key}" Foreground="White" Margin="30,20,30,0" FontSize="20" HorizontalAlignment="Center" FontWeight="Bold"/>
+                            </Grid>
+                            <Grid>
+                                <ListBox x:Name="listBuildingChild" ItemsSource="{Binding Value}" Height="Auto" Background="{x:Null}" FontFamily="Portable User Interface" Margin="10,57,10,0">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <ListBox FontFamily="Portable User Interface" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,0">
+                                                <Grid Height="90" Margin="0" VerticalAlignment="Top">
+                                                    <Border Height="90" BorderThickness="0,2,0,0" Padding="5" Margin="0" BorderBrush="#FF787878" />
+                                                    <TextBlock FontFamily="Portable User Interface" Text="{Binding sessionOfDay}" Foreground="Black" Margin="70,10,30,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                                                    <TextBlock FontFamily="Portable User Interface" Text="{Binding temperature}" Foreground="Black" Margin="70,40,30,0" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left"></TextBlock>
+                                                    <TextBlock FontFamily="Portable User Interface" Text="{Binding temperatureMin}" Foreground="#FF646464" Margin="70,60,30,0" FontWeight="Bold" FontSize="14" HorizontalAlignment="Left"></TextBlock>
+                                                    <TextBlock FontFamily="Portable User Interface" Text="{Binding icon.description}" Foreground="Black" Margin="60,10,30,0" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"></TextBlock>
+                                                    <TextBlock FontFamily="Portable User Interface" Text="{Binding relativeHumidity}" Foreground="#FF646464" Margin="140,40,30,0" FontWeight="Bold" FontSize="14"></TextBlock>
+                                                    <TextBlock FontFamily="Portable User Interface" Text="{Binding pressure}" Foreground="#FF646464" Margin="140,60,30,0" FontWeight="Bold" FontSize="14"></TextBlock>
+                                                    <TextBlock FontFamily="Portable User Interface" Text="{Binding dewPoint}" Foreground="#FF646464" Margin="280,60,30,0" FontWeight="Bold" FontSize="14"></TextBlock>
+                                                    <TextBlock FontFamily="Portable User Interface" Text="{Binding windDirection}" Foreground="#FF646464" Margin="280,40,30,0" FontWeight="Bold" FontSize="14"></TextBlock>
+                                                    <Image Width="60" Height="60" x:Name="imgWeather" Source="{Binding icon.iconWeather}" Margin="0,0,360,0"/>
+                                                </Grid>
+                                            </ListBox>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                        </Grid>
+                    </ListBox>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
+</phone:PhoneApplicationPage>

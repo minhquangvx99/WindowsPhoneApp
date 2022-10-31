@@ -1,0 +1,36 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="MHSM_PhoneApp.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+    <StackPanel HorizontalAlignment="Left" Height="768" VerticalAlignment="Top" Width="480" RenderTransformOrigin="0.5,0.5" Background="White">
+        <StackPanel Height="80" Background="#FFC4CFF5"/>
+        <StackPanel Height="224" CacheMode="BitmapCache" Background="#FFC4CFF5">
+            <Image Height="100" Source="/Assets/Logo/logo.png" Margin="168,0"/>
+             <TextBlock TextWrapping="Wrap" x:Name="txtTitle" Foreground="Black" Height="42" FontSize="23" Width="480" FontWeight="Bold" HorizontalAlignment="Center" TextAlignment="Center" Text="Tổng cục Khí tượng Thủy văn"/>
+        </StackPanel>
+         <TextBlock TextWrapping="Wrap" Text="Tên đăng nhập" Foreground="Black" Margin="25,10,25,0" FontSize="22" FontWeight="Bold"/>
+        <TextBox x:Name="txtUsername" TextWrapping="Wrap" BorderBrush="#FF787878" Margin="10,-8" BorderThickness="3" AcceptsReturn="True" Background="White" SelectionBackground="White" Height="76"/>
+         <TextBlock TextWrapping="Wrap" Text="Mật khẩu" Foreground="Black" Margin="25,0,25,0" FontSize="22" FontWeight="Bold"/>
+        <Grid>
+            <PasswordBox x:Name="passwordBox" BorderBrush="#FF787878" Background="White" SelectionBackground="{x:Null}" PasswordChar="*" Visibility="Visible" SelectionForeground="{x:Null}" Margin="10,-8,10,0" Height="76"/>
+            <TextBox Name="passwordTxtBox" Visibility="Collapsed" Margin="10,-8,10,0" Height="76" BorderBrush="#FF787878" Background="#BFFFFFFF"/>
+        </Grid>
+        <CheckBox Name="showPassword" Content="Hiển thị password" Checked="ShowPassword_Checked" Unchecked="ShowPassword_Unchecked" Background="#FF31B5FF" Margin="28,0,28,0" Height="74" Foreground="Black" FontWeight="Bold" FontSize="20" BorderBrush="#FF474747"/>
+        <Border BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="#FF0059F3" Margin="25,0,25,10" Height="71" BorderBrush="#FF0247FF" >
+            <Button x:Name="btnLogin" Content="Đăng nhập" Click="btnLogin_Click" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Margin="-8" FontSize="22"/>
+        </Border>
+        <Border BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="25,0,25,0" Height="71" BorderBrush="#FF787878" >
+            <Button x:Name="btnLoginCus" Content="Tài khoản khách" Click="btnLoginCus_Click" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" Margin="-8" FontWeight="Bold" FontSize="22"/>
+        </Border>
+    </StackPanel>
+</phone:PhoneApplicationPage>

@@ -1,0 +1,189 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="MHSM_PhoneApp.StationInfoPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:drawerLayout="using:DrawerLayout"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+    <StackPanel Background="#FFD6D6D6">
+        <StackPanel Background="White" Height="80">
+            <Grid x:Name="RootLayout">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <!-- Title Bar -->
+                <Grid x:Name="TitleBar" Background="White" Grid.Row ="0" Height="80">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid HorizontalAlignment="Right" Width="472">
+                        <Image Margin="0,5"  x:Name="DrawerIcon"  Grid.Column="0" Source="/Assets/Back/back.png" HorizontalAlignment="Left" Width="40" RenderTransformOrigin="0.5,0.714" Grid.RowSpan="2"/>
+                        <Button x:Name="btnBack" Click="btnBack_Click" Margin="0,0,414,0" Grid.RowSpan="2" Background="{x:Null}" BorderBrush="{x:Null}"/>
+                    </Grid>
+                    <Image Height="52" Source="/Assets/Logo/logo.png" Margin="146,10,146,10"/>
+                    <Image x:Name="avatarSmall" Height="60" Width="60" Source="/Assets/Avatar/avatar.png" Margin="400,10,10,10"/>
+                    <Image Height="60" Width="60" Source="/Assets/AvatarFrame/avatarFrameSmall.png" Margin="400,10,10,10"/>
+                </Grid>
+            </Grid>
+        </StackPanel>
+        <ListBox x:Name="listBuilding" Height="680" Background="{x:Null}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ListBox FontFamily="Portable User Interface" Background="{x:Null}" BorderBrush="{x:Null}" Margin="20,10,20,0">
+                        <Grid>
+                            <TextBlock x:Name="txtTitle3" TextWrapping="Wrap" Foreground="#FF6E6E6E" Text="Thông tin chung" FontWeight="Bold" Width="440" Margin="0,10,20,0" FontFamily="Portable User Interface"/>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Mã trạm" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding ST_ID}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Tên trạm" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding STATION_NAME}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Trạng thái" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding IS_ACTIVE_STRING}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Loại trạm" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding STATION_TYPE}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="#FF005DFF" Margin="20,10,20,0" Height="65" BorderBrush="#FF555555" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Danh sách cảm biến" Foreground="White" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <Button x:Name="btnSensorList" Content="" BorderBrush="{x:Null}" Foreground="Black" Margin="20,10,20,0" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left" FontFamily="Portable User Interface" Click="btnSensorList_Click" Tag="{Binding STATION_NO}"/>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Hệ thống quan trắc" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding MONITORING_SYSTEM_TYPE_STRING}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Khu vực" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding SITE_NAME}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Tỉnh/Thành phố" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding PROVINCE_NAME}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Địa chỉ" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding STATION_ADDRESS}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Tên sông" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding RIVER_NAME}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock x:Name="txtTitle4" FontWeight="Bold" TextWrapping="Wrap" Foreground="#FF6E6E6E" Text="Thông tin chi tiết" Width="440" Margin="0,10,20,0" FontFamily="Portable User Interface"/>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Tên trạm" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding STATION_LONGNAME}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="#FF005DFF" Margin="20,10,20,0" Height="65" BorderBrush="#FF555555" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Loại logger" Foreground="White" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding DATA_TYPE_LOGGER}" Foreground="#FFC7C7C7" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                            <Button x:Name="btnLoggerType" Content="" BorderBrush="{x:Null}" Foreground="Black" Margin="20,10,20,0" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left" FontFamily="Portable User Interface" Click="btnLoggerType_Click" Tag="{Binding DATA_TYPE_LOGGER_ID}"/>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Phương thức truyền tin" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding METHOD}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Ngày hiệu lực" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding CREATE_DATE_STRING}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Ngày hết hiệu lực" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding MODIFIED_DATE_STRING}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <TextBlock x:Name="txtTitle5" FontWeight="Bold" TextWrapping="Wrap" Foreground="#FF6E6E6E" Text="Vị trí" Width="440" Margin="0,10,20,0" FontFamily="Portable User Interface"/>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Quốc gia" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding COUNTRY_NAME}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Tỉnh/Thành phố" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding PROVINCE_NAME}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Xã/Phường" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding DISTRICT_NAME}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Kinh độ" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding STATION_LONGITUDE}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Vĩ độ" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding STATION_LATITUDE}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border  Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="White" Margin="20,10,20,0" Height="65" BorderBrush="#FF787878" >
+                            </Border>
+                            <TextBlock FontFamily="Portable User Interface" Text="Độ cao trạm" Foreground="Black" Margin="30,20,20,0" FontWeight="Bold" FontSize="20"></TextBlock>
+                            <TextBlock FontFamily="Portable User Interface" Text="{Binding STATION_HEIGHT}" Foreground="#FF646464" Margin="30,46,20,0" FontWeight="Bold" FontSize="16"></TextBlock>
+                        </Grid>
+                        <Grid>
+                            <Border Width="400" BorderThickness="3,3,3,3" Padding="5" CornerRadius="10" Background="#FF0059F3" Margin="20,10,20,0" Height="71" BorderBrush="#FF0247FF" >
+                                <Button x:Name="btnViewDataStation" Content="Xem dữ liệu trạm" Click="btnViewDataStation_Click" FontWeight="Bold" Background="{x:Null}" BorderBrush="{x:Null}" Margin="-8" FontSize="22" FontFamily="Portable User Interface"/>
+                            </Border>
+                        </Grid>
+                    </ListBox>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
+</phone:PhoneApplicationPage>
